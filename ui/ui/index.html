@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
+    <title>Free Voice Changer</title>
+
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="fatal-error modal hide">
+        <div class="fe-title">Sorry, please restart the app!</div>
+        <div class="fe-subtitle">Something went wrong internally :(</div>
+        <div class="fe-error">
+            <div class="fe-error-title">Error Message:</div>
+            <div class="fe-error-msg">N/A</div>
+        </div>
+    </div>
+
+    <div class="loading-screen">
+        <div class="ls-content">
+            <span><img class="title-logo" src="assets/logo.png"></span>
+            <div class="ls-version">v0.1</div>
+        </div>
+        <span class="ls-loading">Initializing...</span>
+        <div class="ls-progress slider" data-min="0" data-max="1" data-default="0" data-steps="-1" data-disable-low-limit="true">
+            <div class="slider-body"></div>
+        </div>
+    </div>
+
+    <div class="credits-menu menu hide">
+        <img class="cm-exit menu-exit" src="assets/exit.svg">
+
+        <div class="menu-title">
+            <div class="menu-title-title">Credits</div>
+            <div class="menu-title-subtitle"></div>
+        </div>
+
+        <div class="cm-credits">
+            <div class="cm-credit"><strong>Voice conversion model and code from</strong> https://github.com/OlaWod/FreeVC</div>
+            <div class="cm-credit"><strong>Input microphone icon from</strong> https://thenounproject.com/icon/microphone-856590/</div>
+            <div class="cm-credit"><strong>Output audio icon from</strong> https://thenounproject.com/icon/audio-2115701/</div>
+            <div class="cm-credit"><strong>Font used</strong> https://fonts.google.com/specimen/Nunito</div>
+        </div>
+    </div>
+
+    <div class="selection-menu menu hide">
+        <img class="sm-exit menu-exit" src="assets/exit.svg">
+
+        <div class="sm-error hide"></div>
+
+        <div class="menu-title">
+            <div class="menu-title-title">Choose a voice</div>
+            <div class="menu-title-subtitle">All provided voices are entirely synthetic and not from real people.</div>
+        </div>
+
+        <div class="sm-table">
+            <div class="sm-table-header">
+                <div class="sm-table-header-cols-wrapper">
+                    <div class="sm-table-header-col">Female</div>
+                    <!-- <div class="sm-table-header-col">Interpolated</div> -->
+                    <div class="sm-table-header-col">Male</div>
+                </div>
+            </div>
+
+            <div class="sm-table-content">
+                <div class="sm-table-rows">
+                    <!-- <div class="sm-table-shade"></div> -->
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                    <div class="sm-table-row"></div>
+                </div>
+
+                <div class="sm-table-cols">
+                    <div class="sm-table-col">
+                        <div class="sm-table-col-content">
+                            <div class="sm-item">Fem 1</div>
+                            <div class="sm-item">Fem 2</div>
+                            <div class="sm-item">Fem 3</div>
+                            <div class="sm-item">Fem 4</div>
+                            <div class="sm-item">Fem 5</div>
+                            <div class="sm-item">Fem 6</div>
+                            <div class="sm-item">Fem 7</div>
+                            <div class="sm-item">Fem 8</div>
+                            <div class="sm-item">Fem 9</div>
+                            <div class="sm-item">Fem 10</div>
+                        </div>
+                    </div>
+                    <!-- <div class="sm-table-col">
+                        <div class="sm-table-col-content">
+                            <div class="sm-item">Fem 1 + Male 1</div>
+                            <div class="sm-item">Fem 2 + Male 2</div>
+                            <div class="sm-item">Fem 3 + Male 3</div>
+                            <div class="sm-item">Fem 4 + Male 4</div>
+                            <div class="sm-item">Fem 5 + Male 5</div>
+                            <div class="sm-item">Fem 6 + Male 6</div>
+                            <div class="sm-item">Fem 7 + Male 7</div>
+                            <div class="sm-item">Fem 8 + Male 8</div>
+                            <div class="sm-item">Fem 9 + Male 9</div>
+                            <div class="sm-item">Fem 10 + Male 10</div>
+                        </div>
+                    </div> -->
+                    <div class="sm-table-col">
+                        <div class="sm-table-col-content">
+                            <div class="sm-item">Male 1</div>
+                            <div class="sm-item">Male 2</div>
+                            <div class="sm-item">Male 3</div>
+                            <div class="sm-item">Male 4</div>
+                            <div class="sm-item">Male 5</div>
+                            <div class="sm-item">Male 6</div>
+                            <div class="sm-item">Male 7</div>
+                            <div class="sm-item">Male 8</div>
+                            <div class="sm-item">Male 9</div>
+                            <div class="sm-item">Male 10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sm-custom">
+            <div class="sm-custom-unset">
+                <div class="sm-custom-btn">
+                    <div class="sm-custom-btn-inner">Or click here to use a custom voice clip instead!</div>
+                </div>
+                <div class="sm-custom-sub">A custom voice clip should be between 4 and 10 seconds long in .wav format.</div>
+            </div>
+            <div class="sm-custom-set hide">
+                <div class="sm-custom-title">Using custom voice clip:</div>
+                <img class="sm-custom-exit" src="assets/exit2.svg">
+                <div class="sm-custom-btn sm-custom-btn-set">
+                    <div class="sm-custom-btn-inner">N/A</div>
+                </div>
+                <div class="sm-custom-sub">Click above to change the voice clip.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-bg hide"></div>
+
+    <div class="input-menu modal hide">
+        <div class="modal-header">
+            <div class="modal-header-title">Input Devices</div>
+            <img class="modal-exit" src="assets/exit3.svg">
+        </div>
+
+        <div class="im-device-list">
+            <div class="im-device dummy">N/A</div>
+        </div>
+
+        <div class="im-done-btn btn">
+            <div class="btn-inner">Done</div>
+        </div>
+    </div>
+
+    <div class="output-menu modal hide">
+        <div class="modal-header">
+            <div class="modal-header-title">Output Devices</div>
+            <img class="modal-exit" src="assets/exit3.svg">
+        </div>
+
+        <div class="im-device-list">
+            <div class="im-device dummy">N/A</div>
+        </div>
+
+        <div class="im-done-btn btn">
+            <div class="btn-inner">Done</div>
+        </div>
+    </div>
+
+
+    <div class="title">
+        <div><img class="title-logo" src="assets/logo.png"></div>
+        <div class="title-version">v0.1</div>
+    </div>
+
+    <div class="controls">
+        <div class="side-control input-control">
+            <div class="side-control-title">Input</div>
+            <div class="side-control-text hide">Click to change input audio device</div>
+            <div class="side-control-circle">
+                <div class="circle-fade"></div>
+                <img class="circle" src="assets/circle.svg">
+                <img class="side-control-icon input-mic" src="assets/mic.svg">
+            </div>
+            <div class="side-control-options">
+                <div class="side-control-option">
+                    <div class="side-control-option-title">Input Volume</div>
+                    <div class="slider input-volume-slider" data-min="0" data-max="3" data-steps="30" data-default="1">
+                        <div class="slider-body"></div>
+                        <div class="slider-value">75%</div>
+                    </div>
+                </div>
+                <div class="side-control-option">
+                    <div class="side-control-option-title">Input Threshold</div>
+                    <div class="slider input-threshold-slider" data-min="0" data-max="1" data-steps="20">
+                        <div class="slider-body"></div>
+                        <div class="slider-value">50%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <img class="controls-line controls-line-left" src="assets/line.png">
+
+        <div class="voice">
+            <div class="controls-enabled-block hide">
+                <div class="controls-enabled-warning">Can't change settings while voice changer is running</div>
+            </div>
+            <div class="voice-title">Voice</div>
+            <div class="voice-option voice-option-voice">
+                <div class="voice-option-title">Voice</div>
+                <div class="voice-option-value">
+                    <span>Fem 1</span>
+                    <img class="dropdown-arrow" src="assets/dropdown_arrow.svg">
+                </div>
+            </div>
+
+            <div class="voice-option voice-option-pitch">
+                <div class="voice-option-title">Adjust Pitch</div>
+                <div class="voice-option-value">1x</div>
+                <div class="voice-option-slider slider" data-min="0.75" data-max="1.25" data-steps="10" data-default="1">
+                    <div class="slider-body slider-pitch"></div>
+                </div>
+            </div>
+
+            <div class="voice-option voice-option-quality">
+                <div class="voice-option-title">Quality</div>
+                <div class="voice-option-value">Not Set</div>
+                <div class="voice-option-slider slider" data-min="0" data-max="1" data-steps="2" data-default="1">
+                    <div class="slider-body slider-quality"></div>
+                </div>
+                <div class="voice-option-quality-latency voice-option-tip">
+                    <div>Estimated Latency: Error</div>
+                </div>
+            </div>
+        </div>
+
+        <img class="controls-line controls-line-right" src="assets/line.png">
+
+        <div class="side-control output-control">
+            <div class="side-control-title">Output</div>
+            <div class="side-control-text hide">Click to change output audio device</div>
+            <div class="side-control-circle">
+                <div class="circle-fade"></div>
+                <img class="circle" src="assets/circle.svg">
+                <img class="side-control-icon output-speaker" src="assets/speaker.svg">
+            </div>
+            <div class="side-control-options">
+                <div class="side-control-option">
+                    <div class="side-control-option-title">Output Volume</div>
+                    <div class="slider output-volume-slider" data-min="0" data-max="3" data-steps="30" data-default="1">
+                        <div class="slider-body"></div>
+                        <div class="slider-value">75%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="credits-btn">Credits</div>
+
+    <div class="running-indication"></div>
+
+    <div class="toggle">
+        <div class="toggle-title">Running</div>
+        <div class="toggle-btn">
+            <div class="toggle-btn-knob"></div>
+        </div>
+        <img class="toggle-arrow hide" src="assets/click_arrow.svg">
+        <div class="toggle-subtitle hide">Click to run!</div>
+    </div>
+    
+    <script src="./index.js" type="module"></script>
+    <script src="./socket.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+glob2==0.7
+tqdm==4.62.3
+librosa==0.8.1
+numpy==1.21.6
+scipy==1.7.2
+tensorboard==2.7.0
+torch==2.0.0
+torchvision==0.15.1
+torch-directml==0.2.0.dev230426 
+webrtcvad==2.0.10
+sounddevice==0.4.6
+soundfile==0.12.1
+websocket-server==0.6.4
