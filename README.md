@@ -12,17 +12,19 @@ https://www.youtube.com/watch?v=mm-Rig7dPr8
 
 2. Have nodejs installed
 
-3. Clone this repo `https://github.com/SarahStuff/Free_Voice_Changer.git`
+3. Have Microsoft Visual C++ 14.0 or greater installed
 
-4. CD into this repo `cd Free_Voice_Changer`
+4. Clone this repo `https://github.com/SarahStuff/Free_Voice_Changer.git`
 
-5. Install python requirements `pip install -r requirements.txt`
+5. CD into this repo `cd Free_Voice_Changer`
 
-6. Install nodejs requirements `npm install` (run this in the 'ui' directory)
+6. Install python requirements `pip install -r requirements.txt`
 
-7. Download the freevc.pth model from [here](https://1drv.ms/u/s!AnvukVnlQ3ZTx1rjrOZ2abCwuBAh?e=UlhRR5) and put it in under the directory 'FreeVC/checkpoints/'
+7. Install nodejs requirements `npm install` (run this in the 'ui' directory)
 
-8. Download the WavLM-Large model and from [here](https://github.com/microsoft/unilm/tree/master/wavlm) and put it under the directory 'FreeVC/wavlm/'
+8. Download the freevc.pth model from [here](https://1drv.ms/u/s!AnvukVnlQ3ZTx1rjrOZ2abCwuBAh?e=UlhRR5) and put it in under the directory 'FreeVC/checkpoints/'
+
+9. Download the WavLM-Large model and from [here](https://github.com/microsoft/unilm/tree/master/wavlm) and put it under the directory 'FreeVC/wavlm/'
 
 ## Running the app
 
